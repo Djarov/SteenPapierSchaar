@@ -44,12 +44,14 @@
     <script>
         const choices = ["steen", "papier", "schaar"];
 
+        // Functie voor computer keuze random
         function computerPlay() {
             return choices[Math.floor(Math.random() * choices.length)];
         }
 
+        // Logic voor uitkomsten
         function playRound(playerSelection, computerSelection) {
-            
+
             if (playerSelection === computerSelection) {
                 return "Gelijkspel";
             } else if (
@@ -63,41 +65,22 @@
             }
         }
 
-        const steenbtn = document.getElementById("steenbtn");
-
-        steenbtn.addEventListener("click", function () {
+        // Event handler function voor alle buttons
+        function handleClick(event) {
+            const playerSelection = event.target.id.replace("btn", ""); //pak selectie van speler
             const computerSelection = computerPlay();
-            const playerSelection = "steen";
             const result = playRound(playerSelection, computerSelection);
 
             document.getElementById("computer").innerText = computerSelection;
             document.getElementById("human").innerText = playerSelection;
             document.getElementById("result").innerText = result;
-        });
+        }
 
-        const papierbtn = document.getElementById("papierbtn");
+        // Attach event handler aan alle buttons
+        document.getElementById("steenbtn").addEventListener("click", handleClick);
+        document.getElementById("papierbtn").addEventListener("click", handleClick);
+        document.getElementById("schaarbtn").addEventListener("click", handleClick);
 
-        papierbtn.addEventListener("click", function () {
-            const computerSelection = computerPlay();
-            const playerSelection = "papier";
-            const result = playRound(playerSelection, computerSelection);
-
-            document.getElementById("computer").innerText = computerSelection;
-            document.getElementById("human").innerText = playerSelection;
-            document.getElementById("result").innerText = result;
-        });
-
-        const schaarbtn = document.getElementById("schaarbtn");
-
-        schaarbtn.addEventListener("click", function () {
-            const computerSelection = computerPlay();
-            const playerSelection = "schaar";
-            const result = playRound(playerSelection, computerSelection);
-
-            document.getElementById("computer").innerText = computerSelection;
-            document.getElementById("human").innerText = playerSelection;
-            document.getElementById("result").innerText = result;
-        });
     </script>
 </body>
 
